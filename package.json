@@ -1,8 +1,12 @@
 {
-  "name": "cicada-eslint-config",
-  "version": "1.0.0",
+  "name": "@cicada/eslint-config",
+  "version": "3.0.0",
   "description": "eslint config of cicada",
   "main": "index.js",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/laibin-wang/cicada-eslint-config.git"
