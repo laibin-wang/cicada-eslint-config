@@ -6,6 +6,7 @@
 cicada-eslint-config
 ├─ index.js
 ├─ package.json
+├─ README.md
 └─ yarn.lock
 
 ```
@@ -28,6 +29,6 @@ yarn add @cicada/eslint-config --dev
 
 ```js
 {
-  "extends": ["@cicada"]
+  "extends": ["@cicada/eslint-config"]
 }
 ```
