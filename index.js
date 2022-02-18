@@ -1,69 +1,92 @@
 module.exports = {
   extends: [
-    'airbnb-base',
-    'plugin:@typescript-eslint/recommended',
     'plugin:vue/vue3-recommended',
-    'prettier',
-    'prettier/vue',
-    'prettier/@typescript-eslint',
+    'eslint-config-standard',
+    'plugin:@typescript-eslint/eslint-recommended'
   ],
+
+  plugins: ['@typescript-eslint'],
+
   parserOptions: {
     parser: '@typescript-eslint/parser',
     ecmaVersion: 2019,
     sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true
+    },
     extraFileExtensions: ['.vue']
   },
-  plugins: ['@typescript-eslint'],
-  env: {
-    es6: true,
-    node: true,
-    jest: true,
-    browser: true
-  },
+
   rules: {
-    'no-new': 'off',
-    'no-shadow': 'off',
-    'no-bitwise': 'off',
-    'func-names': 'off',
-    "arrow-parens": 'off',
-    'no-console': 'off',
+    'no-new': 'error',
+    'no-bitwise': 'error',
+    'func-names': ['error', 'always'],
+    'no-console': ['error', { 'allow': [ 'warn', 'error' ] }],
     'no-plusplus': 'off',
-    'no-fallthrough': 'off',
-    "eol-last": 'off',
-    'default-case': 'off',
-    'prefer-template': 'off',
-    'consistent-return': 'off',
-    'no-param-reassign': 'off',
-    'no-nested-ternary': 'off',
-    'no-underscore-dangle': 'off',
-    'no-unused-expressions': 'off',
-    'no-restricted-globals': 'off',
-    'class-methods-use-this': 'off',
-    'no-multi-spaces': [2, { ignoreEOLComments: true }],
+    'default-case': 'error',
+    'prefer-template': 'error',
+    'consistent-return': 'error',
+    'no-nested-ternary': 'error',
+    'no-restricted-exports': 'off',
+    "no-restricted-syntax": 'off',
+    'eol-last': ['error', 'always'],
+    'semi': ['error', 'never'],
+    'space-before-function-paren': ['error', 'always'],
     'prefer-destructuring': ['error', { object: true, array: false }],
     // eslint-plugin-import
-    'import/order': 'off',
-    'import/extensions': 'off',
-    'import/no-unresolved': 'off',
-    'import/prefer-default-export': 'off',
-    'import/no-extraneous-dependencies': 'off',
     // eslint-plugin-vue
-    'vue/no-v-html': 'off',
-    'vue/attributes-order': 'off',
-    'vue/require-v-for-key': 'off',
-    'vue/require-default-prop': 'off',
-    'vue/no-unused-components': 'off',
-    'vue/name-property-casing': ['error', 'kebab-case'],
-    'vue/component-name-in-template-casing': ['error', 'kebab-case'],
+    'vue/no-v-html': 'error',
+    'vue/attributes-order': ['error', {
+      'order': [
+        'DEFINITION',
+        'LIST_RENDERING',
+        'CONDITIONALS',
+        'RENDER_MODIFIERS',
+        'GLOBAL',
+        ['UNIQUE', 'SLOT'],
+        'TWO_WAY_BINDING',
+        'OTHER_DIRECTIVES',
+        'OTHER_ATTR',
+        'EVENTS',
+        'CONTENT'
+      ],
+      'alphabetical': true
+    }],
+    'vue/component-definition-name-casing': ['error', 'PascalCase'],
+    'vue/html-closing-bracket-newline': ['error', {
+      singleline: 'never',
+      multiline: 'never'
+    }],
+    'vue/html-indent': ['error', 2, {
+      attribute: 1,
+      baseIndent: 1,
+      closeBracket: 1,
+      alignAttributesVertically: false,
+      ignores: []
+    }],
+    'vue/no-unused-components': ['error', {
+      'ignoreWhenBindingPresent': true
+    }],
+    'vue/require-default-prop': 'error',
+    'vue/require-v-for-key': 'error',
+    'vue/return-in-computed-property': ['error', {
+      'treatUndefinedAsUnspecified': true
+    }],
     // typescript-eslint
     '@typescript-eslint/camelcase': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/no-unused-vars': 'error',
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
-    '@typescript-eslint/no-empty-function': 'off',
-    '@typescript-eslint/no-non-null-assertion': 'off',
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
-  }
+    '@typescript-eslint/no-non-null-assertion': 'error',
+    '@typescript-eslint/explicit-function-return-type': 'error',
+    '@typescript-eslint/explicit-module-boundary-types': 'off'
+  },
+
+  overrides: [
+    {
+      files: ['*.vue'],
+      parser: require.resolve('vue-eslint-parser')
+    }
+  ]
 }
